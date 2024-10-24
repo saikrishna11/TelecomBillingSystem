@@ -1,0 +1,53 @@
+# Compiled class file
+*.class
+
+# Log files
+*.log
+
+# Maven directories
+target/
+!.mvn/timing.properties
+
+# Gradle directories
+.gradle/
+build/
+
+# IDE files
+.idea/
+*.iml
+*.ipr
+*.iws
+*.class
+*.log
+
+# Eclipse files
+.settings/
+.classpath
+.project
+
+# IntelliJ files
+out/
+*.jar
+*.war
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Maven wrapper
+.mvn/
+
+# Other files
+*.swp
+*.swo
+
+# Node.js dependencies (if using a Node.js UI)
+node_modules/
+build/
+
+# React app build files
+/build
+/.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

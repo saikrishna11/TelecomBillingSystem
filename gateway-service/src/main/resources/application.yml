@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: gateway-service
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    gateway:
+      routes:
+        - id: customer-service
+          uri: http://customer-service:8081
+          predicates:
+            - Path=/customers/**
+        - id: billing-service
+          uri: http://billing-service:8082
+          predicates:
+            - Path=/bills/**
+        - id: plan-service
+          uri: http://plan-service:8083
+          predicates:
+            - Path=/plans/**
+#      globalfilters:
+#        - name: AddResponseHeader
+#          args:
+#            name: Access-Control-Allow-Origin
+#            value: http://localhost:3000
+#        - name: AddResponseHeader
+#          args:
+#            name: Access-Control-Allow-Methods
+#            value: GET,POST,PUT,DELETE,OPTIONS
+#        - name: AddResponseHeader
+#          args:
+#            name: Access-Control-Allow-Headers
+#            value: Content-Type
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-server:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+server:
+  port: ${PORT:8080}
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
