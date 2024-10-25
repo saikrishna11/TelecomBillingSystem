@@ -1,0 +1,71 @@
+services:
+  eureka-server:
+    build:
+      context: ./eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - telecom-network
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    networks:
+      - telecom-network
+
+  gateway-service:
+    build:
+      context: ./gateway-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka-server
+    networks:
+      - telecom-network
+
+  customer-service:
+    build:
+      context: ./customer-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongo
+      - eureka-server
+    networks:
+      - telecom-network
+
+  billing-service:
+    build:
+      context: ./billing-service
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mongo
+      - eureka-server
+    networks:
+      - telecom-network
+
+  plan-service:
+    build:
+      context: ./plan-service
+    ports:
+      - "8083:8083"
+    depends_on:
+      - mongo
+      - eureka-server
+    networks:
+      - telecom-network
+  telecom-billing-ui:
+    build:
+      context: ./telecom-billing-ui
+    ports:
+      - "3000:80"
+    networks:
+      - telecom-network
+    depends_on:
+      - gateway-service
+
+networks:
+  telecom-network:
+    driver: bridge
