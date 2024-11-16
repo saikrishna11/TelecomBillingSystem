@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.telecom.common.utils.Constants.CROSS_ORIGIN_URL;
+
+@CrossOrigin(origins = CROSS_ORIGIN_URL)
 @RestController
 @RequestMapping("/bills")
 @Api(tags = "Billing Management")
